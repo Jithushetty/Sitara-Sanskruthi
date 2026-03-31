@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitara Sanskruthi</title>
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background: linear-gradient(135deg, #ffe5e5, #fff4cc, #ffe0b3);
+      background-attachment: fixed;
+    }
+
+  
+   header {
+      background:#000;
+      color:white;
+      padding:10px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:relative;
+    }
+
+    .header-center {
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:16px;
+      font-weight:600;
+      letter-spacing:2px;
+      background: linear-gradient(90deg, #ffd700, #ff4d4d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .header-left {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .header-left {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-text {
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+
+    .brand-name {
+      font-size:20px;
+      font-weight:600;
+      letter-spacing:1px;
+    }
+
+    .tagline {
+      font-size:12px;
+      font-style:italic;
+      color:#ffcccc;
+      letter-spacing:1px;
+    }
+
+    .logo {
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+/* Royal Carousel Section */
+.carousel-section {
+  background: url('https://www.transparenttextures.com/patterns/gold-scale.png'), linear-gradient(#000,#111);
+  background-blend-mode: overlay;
+  position: relative;
+  height: 620px;
+  overflow: hidden;
+}
+
+/* Dark overlay for readability */
+.carousel-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+/* Title */
+.carousel-title {
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Playfair Display', serif;
+  font-size:30px;
+  color:#ffd700;
+  letter-spacing:4px;
+  text-shadow:0 4px 15px rgba(0,0,0,0.8);
+  z-index: 2;
+}
+
+/* Carousel container */
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Slides stacked */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each image */
+.slides img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fade 18s infinite;
+}
+
+/* Stagger animation for each image */
+.slides img:nth-child(1) { animation-delay: 0s; }
+.slides img:nth-child(2) { animation-delay: 6s; }
+.slides img:nth-child(3) { animation-delay: 12s; }
+
+@keyframes fade {
+  0%   { opacity: 0; transform: scale(1.05); }
+  5%   { opacity: 1; }
+  30%  { opacity: 1; transform: scale(1.02); }
+  35%  { opacity: 0; }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+
+    .container {
+      padding:30px; display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .product {
+      background:white; border-radius:15px; overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      transition:0.3s; cursor:pointer;
+      position:relative;
+    }
+
+    .product:hover { transform:translateY(-10px); }
+
+    .product img { width:100%; height:250px; object-fit:cover; }
+
+    .product-details { padding:15px; text-align:center; }
+    .price { color:green; margin:10px 0; }
+
+    .btn { padding:10px; background:black; color:white; border:none; border-radius:20px; cursor:pointer; }
+
+    /* Card arrows */
+    .card-nav {
+      position:absolute; top:40%; transform:translateY(-50%);
+      font-size:24px; color:white; background:rgba(0,0,0,0.5);
+      padding:5px 10px; cursor:pointer; border-radius:50%;
+    }
+
+    .card-prev { left:10px; }
+    .card-next { right:10px; }
+
+    /* Modal */
+    .modal {
+      display:none; position:fixed; z-index:999;
+      left:0; top:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.95);
+      justify-content:center; align-items:center; flex-direction:column;
+    }
+
+    .modal-main {
+      max-width:80%; max-height:70%;
+      transition: transform 0.3s;
+      cursor: zoom-in;
+    }
+
+    .zoomed { transform: scale(2); cursor: zoom-out; }
+
+    .thumbs { margin-top:15px; display:flex; gap:10px; }
+
+    .thumbs img {
+      width:60px; height:60px; object-fit:cover;
+      border:2px solid white; cursor:pointer;
+    }
+
+    .nav {
+      position:absolute; top:50%; transform:translateY(-50%);
+      font-size:40px; color:white; cursor:pointer;
+      padding:10px;
+    }
+
+    .prev { left:20px; }
+    .next { right:20px; }
+
+    .close {
+      position:absolute; top:20px; right:30px;
+      font-size:30px; color:white; cursor:pointer;
+    }
+
+
+
+    footer { background:#111; color:white; text-align:center; padding:15px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="images/logo.png" class="logo">
+    <div class="brand-name">Sitara Sanskriti</div>
+  </div>
+
+  <div class="header-center">Sarees that define you</div>
+</header>
+
+<div class="carousel-section">
+  <div class="carousel-title">Wedding Collection</div>
+  <div class="carousel">
+    <div class="slides">
+      <img src="images/sit1.jpg">
+      <img src="images/sit2.jpg">
+      <img src="images/sit3.jpg">
+    </div>
+  </div>
+</div>
+
+<div class="container" id="productContainer"></div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div class="nav prev" onclick="prevImg()">❮</div>
+  <img id="modalMain" class="modal-main">
+  <div class="nav next" onclick="nextImg()">❯</div>
+  <div class="thumbs" id="thumbs"></div>
+</div>
+
+<footer>WhatsApp Orders Available ✅</footer>
+
+<script>
+const products = [
+  {
+    name: "Saree1",
+    price: 999,
+    images: [
+      "images/sar1.jpg",
+      "images/sar2.jpg",
+      "images/sar3.jpg"
+    ]
+  },
+  {
+    name: "Saree2",
+    price: 999,
+   images: [
+      "images/sar1.jpg",
+      "images/sar2.jpg",
+      "images/sar3.jpg"
+    ]
+  }
+];
+
+let currentProduct = 0;
+let currentIndex = 0;
+let cardIndexes = [0,0];
+
+const container = document.getElementById('productContainer');
+
+products.forEach((p, i) => {
+  const div = document.createElement('div');
+  div.className = 'product';
+  div.innerHTML = `
+    <div onclick="openModal(${i})">
+      <img id="cardImg${i}" src="${p.images[0]}">
+    </div>
+    <div class="card-nav card-prev" onclick="event.stopPropagation();prevCard(${i})">❮</div>
+    <div class="card-nav card-next" onclick="event.stopPropagation();nextCard(${i})">❯</div>
+    <div class="product-details">
+      <h3>${p.name}</h3>
+      <div class="price">₹${p.price}</div>
+      <button class="btn" onclick="event.stopPropagation();orderWhatsApp('${p.name}',${p.price})">Order</button>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+function nextCard(i){
+  cardIndexes[i] = (cardIndexes[i]+1)%products[i].images.length;
+  document.getElementById(`cardImg${i}`).src = products[i].images[cardIndexes[i]];
+}
+
+function prevCard(i){
+  cardIndexes[i] = (cardIndexes[i]-1+products[i].images.length)%products[i].images.length;
+  document.getElementById(`cardImg${i}`).src = products[i].images[cardIndexes[i]];
+}
+
+function openModal(index){
+  currentProduct = index;
+  currentIndex = 0;
+  document.getElementById('modal').style.display = 'flex';
+  loadImages();
+}
+
+function loadImages(){
+  const imgs = products[currentProduct].images;
+  const main = document.getElementById('modalMain');
+  const thumbs = document.getElementById('thumbs');
+
+  main.src = imgs[currentIndex];
+  thumbs.innerHTML = '';
+
+  imgs.forEach((img,i)=>{
+    const el = document.createElement('img');
+    el.src = img;
+    el.onclick = ()=>{ currentIndex=i; loadImages(); };
+    thumbs.appendChild(el);
+  });
+}
+
+function nextImg(){
+  const imgs = products[currentProduct].images;
+  currentIndex = (currentIndex+1)%imgs.length;
+  loadImages();
+}
+
+function prevImg(){
+  const imgs = products[currentProduct].images;
+  currentIndex = (currentIndex-1+imgs.length)%imgs.length;
+  loadImages();
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('modalMain').classList.remove('zoomed');
+}
+
+// zoom toggle
+document.getElementById('modalMain').onclick = function(){
+  this.classList.toggle('zoomed');
+}
+
+function orderWhatsApp(product, price) {
+  const number = "916366793127";
+  const msg = `Hi, I want to order ${product} for ₹${price}`;
+  window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+</script>
+
+</body>
+</html>
